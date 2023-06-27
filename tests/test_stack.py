@@ -28,6 +28,27 @@ class TestStack(TestCase):
         with self.assertRaises(AttributeError) as e:
             res = stack.top.next_node.next_node.next_node.data
 
+    def test_pop(self):
+        stack = Stack()
+        stack.push('data1')
+        stack.push('data2')
+        stack.push('data3')
+        stack.push('data4')
+        self.assertEqual(stack.pop().data, "data4")
+        self.assertEqual(stack.pop().data, "data3")
+        self.assertEqual(stack.pop().data, "data2")
+        self.assertEqual(stack.pop().data, "data1")
+        with self.assertRaises(IndexError) as e:
+            stack.pop()
+
+    def test_top(self):
+        stack = Stack()
+        self.assertEqual(stack.top, None)
+        stack.push('data1')
+        self.assertEqual(stack.top.data, 'data1')
+        stack.pop()
+        self.assertEqual(stack.top, None)
+
 
 if __name__ == '__main__':
     main()

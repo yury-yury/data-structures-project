@@ -37,9 +37,13 @@ class Stack:
 
         :return: данные удаленного элемента
         """
-        return self.storage.pop()
+        deleted = self.storage.pop()
+        return deleted
 
     @property
     def top(self):
-        return self.storage[-1]
+        if len(self.storage) > 0:
+            return self.storage[-1]
+        elif len(self.storage) == 0:
+            return None
 
