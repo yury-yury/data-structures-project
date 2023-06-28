@@ -1,29 +1,39 @@
+from typing import Optional
+
+
 class Node:
     """Класс для узла очереди"""
 
-    def __init__(self, data, next_node):
+    def __init__(self, data, next_node=None):
         """
         Конструктор класса Node
 
         :param data: данные, которые будут храниться в узле
         """
-        pass
+        self.data = data
+        self.next_node = next_node
 
 
 class Queue:
     """Класс для очереди"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Конструктор класса Queue"""
-        pass
+        self.storage = []
 
-    def enqueue(self, data):
+    def __str__(self) -> str:
+        return '\n'.join([item.data for item in self.storage])
+
+    def enqueue(self, data) -> None:
         """
         Метод для добавления элемента в очередь
 
         :param data: данные, которые будут добавлены в очередь
         """
-        pass
+        node = Node(data)
+        if len(self.storage) > 0:
+            self.storage[-1].next_node = node
+        self.storage.append(node)
 
     def dequeue(self):
         """
@@ -33,6 +43,14 @@ class Queue:
         """
         pass
 
-    def __str__(self):
-        """Магический метод для строкового представления объекта"""
-        pass
+    @property
+    def head(self) -> Optional[Node]:
+        if len(self.storage) > 0:
+            return self.storage[0]
+        return None
+
+    @property
+    def tail(self):
+        if len(self.storage) > 0:
+            return self.storage[-1]
+        return None

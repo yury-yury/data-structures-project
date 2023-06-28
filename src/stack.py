@@ -1,3 +1,6 @@
+from typing import Optional
+
+
 class Node:
     """Класс для узла стека"""
 
@@ -14,11 +17,15 @@ class Node:
 class Stack:
     """Класс для стека"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Конструктор класса Stack"""
         self.storage = []
 
-    def push(self, data):
+    def __str__(self) -> str:
+        return '\n'.join([item.data for item in self.storage])
+        # return f"{self.__class__.__name__}"
+
+    def push(self, data) -> None:
         """
         Метод для добавления элемента на вершину стека
 
@@ -31,7 +38,7 @@ class Stack:
         current_value = Node(data, previous)
         self.storage.append(current_value)
 
-    def pop(self):
+    def pop(self) -> Node:
         """
         Метод для удаления элемента с вершины стека и его возвращения
 
@@ -41,7 +48,7 @@ class Stack:
         return deleted
 
     @property
-    def top(self):
+    def top(self) -> Optional[Node]:
         if len(self.storage) > 0:
             return self.storage[-1]
         elif len(self.storage) == 0:

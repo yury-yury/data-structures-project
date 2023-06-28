@@ -49,6 +49,14 @@ class TestStack(TestCase):
         stack.pop()
         self.assertEqual(stack.top, None)
 
+    def test_str(self):
+        stack = Stack()
+        self.assertEqual(str(stack), '')
+        stack.push('test1')
+        self.assertEqual(str(stack), 'test1')
+        stack.push('test2')
+        self.assertEqual(str(stack), 'test1\ntest2')
+
 
 if __name__ == '__main__':
     main()
