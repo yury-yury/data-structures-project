@@ -41,7 +41,10 @@ class Queue:
 
         :return: данные удаленного элемента
         """
-        pass
+        if len(self.storage) == 0:
+            return None
+        item = self.storage.pop(0)
+        return item.data
 
     @property
     def head(self) -> Optional[Node]:

@@ -54,6 +54,16 @@ class TestQueue(TestCase):
         queue.enqueue('test2')
         self.assertEqual(str(queue), 'test1\ntest2')
 
+    def test_dequeue(self):
+        queue = Queue()
+        queue.enqueue('data1')
+        queue.enqueue('data2')
+        queue.enqueue('data3')
+        self.assertEqual(queue.dequeue(), 'data1')
+        self.assertEqual(queue.dequeue(), 'data2')
+        self.assertEqual(queue.dequeue(), 'data3')
+        self.assertEqual(queue.dequeue(), None)
+
 
 if __name__ == '__main__':
     main()
