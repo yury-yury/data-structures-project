@@ -1,13 +1,13 @@
 class Node:
     """Класс для узла односвязного списка"""
 
-    def __init__(self, data, next_node=None):
+    def __init__(self, data: dict, next_node=None):
         """
         Конструктор класса Node
 
         :param data: данные, которые будут храниться в узле
         """
-        self.data = data
+        self.data: dict = data
         self.next_node = next_node
 
 
@@ -51,3 +51,24 @@ class LinkedList:
 
         ll_string += ' None'
         return ll_string
+
+    def to_list(self) -> list:
+        result = []
+        node = self.head
+        while node:
+            result.append(node.data)
+            node = node.next_node
+        return result
+
+    def get_data_by_id(self, search_id: int) -> dict:
+        node: Node = self.head
+        while node:
+            # if isinstance(node.data, dict):
+            try:
+                if ('id', search_id) in node.data.items():
+                    return node.data
+            except Exception:
+                print('The value is not a dictionary.')
+
+            node = node.next_node
+
